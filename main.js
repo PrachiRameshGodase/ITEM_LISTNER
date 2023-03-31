@@ -17,7 +17,8 @@ function addItem(e){
 
 //     //get input value
     var newItem=document.getElementById('item').value;
-    var newItem1=document.getElementById('item').value;
+    // var newItem2=document.getElementById('item1').value;
+    var newItem1=document.getElementById('item3').value;
     
     //Create new li element
     var li=document.createElement("li");
@@ -26,6 +27,7 @@ function addItem(e){
     
     //add text node with input value
     li.appendChild(document.createTextNode(newItem));
+    // li.appendChild(document.createTextNode(newItem2));
     li.appendChild(document.createTextNode(newItem1));
 
 
