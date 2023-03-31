@@ -1,6 +1,6 @@
 var form =document.getElementById("addForm");
 var itemList=document.getElementById("items");
-var filter=document.getElementById("filter");
+
 
 //Form submit event
 form.addEventListener('submit',addItem);
@@ -8,8 +8,7 @@ form.addEventListener('submit',addItem);
 // delete button
 itemList.addEventListener("click",removeItem);
 
-//filter items
-filter.addEventListener("keyup",filterItems);
+
 
 //add item
 function addItem(e){
@@ -42,14 +41,17 @@ function addItem(e){
     //append text node
     deleteBtn.appendChild(document.createTextNode("x"));
 
-    //append button to li
-    li.appendChild(deleteBtn);
+    
     //Edit button
     let editBtn = document.createElement('button');
 
     editBtn.className = 'btn  btn-sm float-right Edit';
 
     editBtn.appendChild(document.createTextNode('Edit'));
+
+    //append button to li
+    li.appendChild(deleteBtn);
+    li.prepend(editBtn3);
 
     //append li to list
     itemList.appendChild(li);
@@ -66,24 +68,26 @@ function removeItem(e){
 }
 
 //filter items
-function filterItems(e){
-    //convert text to lowercase
-    var text=e.target.value.toLowerCase();
-    //get list
-    var items=itemList.getElementsByTagName("li");
-    //convert to an array
-    Array.from(items).forEach(function(item){
-        var itemName=item.firstChild.textContent;
-        var itemName1=item.childNodes[1].textContent;
-        if(itemName.toLowerCase().indexOf(text)!=-1||itemName1.toLowerCase().indexOf(text)!=-1)
-        {
-            item.style.display="block";
-        }else{
-            item.style.display="none";
-        }
-    });
+const searchBar = document.getElementById('filter');
+const list = document.getElementById('items');
 
+searchBar.addEventListener('keyup', function (event) {
+const searchText = event.target.value.toLowerCase();
+// Get all the list items
+const items = list.getElementsByTagName('li');
+
+// Loop through each item and show or hide it based on the search text
+for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const text = item.innerText.toLowerCase();
+
+    if (text.indexOf(searchText) !== -1) {
+    item.style.display = 'block';
+    } else {
+    item.style.display = 'none';
+    }
 }
+});
 
 //Creating Default Edit buttons
 
