@@ -1,6 +1,7 @@
 var form =document.getElementById("addForm");
 var itemList=document.getElementById("items");
 var filter=document.getElementById("filter");
+
 //Form submit event
 form.addEventListener('submit',addItem);
 
@@ -17,7 +18,7 @@ function addItem(e){
 
 //     //get input value
     var newItem=document.getElementById('item').value;
-    // var newItem2=document.getElementById('item1').value;
+    
     var newItem1=document.getElementById('item3').value;
     
     //Create new li element
@@ -27,7 +28,7 @@ function addItem(e){
     
     //add text node with input value
     li.appendChild(document.createTextNode(newItem));
-    // li.appendChild(document.createTextNode(newItem2));
+    
     li.appendChild(document.createTextNode(newItem1));
 
 
@@ -73,7 +74,9 @@ function filterItems(e){
     //convert to an array
     Array.from(items).forEach(function(item){
         var itemName=item.firstChild.textContent;
-        if(itemName.toLowerCase().indexOf(text)!=-1){
+        var itemName1=item.childNodes[1].textContent;
+        if(itemName.toLowerCase().indexOf(text)!=-1||itemName1.toLowerCase().indexOf(text)!=-1)
+        {
             item.style.display="block";
         }else{
             item.style.display="none";
